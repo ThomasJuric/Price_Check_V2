@@ -3,17 +3,19 @@ from bs4 import BeautifulSoup
 
 
 def searchAmazon(product):
-    # Check the first 3 products in Amazon
+    # Check the first 3 products
     amazonLink = ('https://www.amazon.ca/s?k=' + product)
     cookies = dict(cookies_are='working')
     print ('searching for ' + product)
     amazon = requests.get(amazonLink, cookies=cookies)
-    soup = BeautifulSoup(amazon.content, 'html.parser')
+    soup = BeautifulSoup(amazon.text, 'html.parser')
     data = []
     for span in soup.find_all('span', {'class','a-price-whole'}):
         values = [span.text for div in span.find_all('span')]
         data.append(values)
-    print(data[0])
+    price1 = data[0]
+    print(price1)
+    # print(re.findall("\d", price1))
 
 # def searchEbay(product):
 #     webbrowser.open(ebay, new=1)
