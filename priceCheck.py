@@ -27,20 +27,21 @@ from bs4 import BeautifulSoup
 
 
 
-
-# product = input("Enter a product you'd like to search for")
-
-amazon = requests.get('https://www.amazon.ca/')
+product = input("Enter a product you'd like to search for: ")
+amazonLink = ('https://www.amazon.ca/s?k=' + product)
+cookies = dict(cookies_are='working')
+print ('searching for ' + product)
+amazon = requests.get(amazonLink, cookies=cookies)
 # ebay = requests.get('https://www.ebay.com/')
 # kijiji = requests.get('https://www.kijiji.ca/')
 # walmart = requests.get('https://www.walmart.com/')
 # facebook = requests.get('https://www.facebook.com/marketplace/')
 # print(amazon.headers)
-src = amazon.content
-soup = BeautifulSoup(src, 'lxml')
+soup = BeautifulSoup(amazon.content, 'html.parser')
+# print(soup)
+findClasses = soup.find_all('span', {'class': 'a-price-whole'})
 
-links = soup.find_all("a")
-print(links)
+print(findClasses)
 print("\n")
 
 
