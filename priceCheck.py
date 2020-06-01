@@ -2,7 +2,18 @@ import requests
 from bs4 import BeautifulSoup
 
 
-# def searchAmazon(product):
+def searchAmazon(product):
+    # Check the first 3 products in Amazon
+    amazonLink = ('https://www.amazon.ca/s?k=' + product)
+    cookies = dict(cookies_are='working')
+    print ('searching for ' + product)
+    amazon = requests.get(amazonLink, cookies=cookies)
+    soup = BeautifulSoup(amazon.content, 'html.parser')
+    data = []
+    for span in soup.find_all('span', {'class','a-price-whole'}):
+        values = [span.text for div in span.find_all('span')]
+        data.append(values)
+    print(data[0])
 
 # def searchEbay(product):
 #     webbrowser.open(ebay, new=1)
@@ -28,24 +39,15 @@ from bs4 import BeautifulSoup
 
 
 product = input("Enter a product you'd like to search for: ")
-amazonLink = ('https://www.amazon.ca/s?k=' + product)
-cookies = dict(cookies_are='working')
-print ('searching for ' + product)
-amazon = requests.get(amazonLink, cookies=cookies)
 # ebay = requests.get('https://www.ebay.com/')
 # kijiji = requests.get('https://www.kijiji.ca/')
 # walmart = requests.get('https://www.walmart.com/')
 # facebook = requests.get('https://www.facebook.com/marketplace/')
 # print(amazon.headers)
-soup = BeautifulSoup(amazon.content, 'html.parser')
 # print(soup)
-findClasses = soup.find_all('span', {'class': 'a-price-whole'})
-
-print(findClasses)
-print("\n")
 
 
-# searchAmazon(product)
+searchAmazon(product)
 # searchEbay(product)
 # searchKijiji(product)
 # searchWalmart(product)
