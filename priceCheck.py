@@ -35,8 +35,28 @@ def searchAmazon(product):
         return(0)
 
 def getAmazonInformation(theData):
-    print("YOU'RE HERE!")
-    print(theData)
+    # Obtain the 3 top prices, as these are most likely the most related products to the user search
+    if(len(theData) > 4):
+        n = 4
+        for i in range(n-1):
+            for j in range(0, n-i-1):
+                if(theData[j] > theData[j+1]):
+                    theData[j], theData[j+1] = theData[j+1], theData[j]
+
+    for i in range(4):
+        print ("%s" %str(theData[i]))
+    
+    print("Cheapest Price Found For Product Searched On Amazon Is: $" + str(theData[0]))
+
+    # print("Price 1 : " + price1)
+    # print("Price 2 : " + price2)
+    # print("Price 3 : " + price3)
+    # if(price1>price3):
+    #     print(price1 + " > " + price3)
+    # else:
+    #     print(price1 + " < " + price3)
+
+
 
 
 
@@ -75,7 +95,7 @@ while ((amazonCount < 51)):
         # print("\nResult Found Below:\n")
         # print(result)
         break
-    
+
 if(amazonCount == 51):
     print("Error occurred gathering information from Amazon..")
 else:
