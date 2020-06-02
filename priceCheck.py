@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-from fake_useragent import UserAgent
 import re
 # ebay = requests.get('https://www.ebay.com/')
 # kijiji = requests.get('https://www.kijiji.ca/')
