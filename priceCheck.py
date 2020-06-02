@@ -6,6 +6,7 @@ import re
 # kijiji = requests.get('https://www.kijiji.ca/')
 # walmart = requests.get('https://www.walmart.com/')
 # facebook = requests.get('https://www.facebook.com/marketplace/')
+# https://www.kijiji.ca/b-canada/iphone/k0l0?dc=true
 
 def searchAmazon(product):
     # Check the first 3 products
@@ -118,19 +119,6 @@ def getEbayInformation(theData, links):
     return (theActualLink, str(theData[0]))
 
 
-# def searchKijiji(product):
-#     webbrowser.open(kijiji, new=1)
-
-# def searchWalmart(product):
-#     webbrowser.open(walmart, new=1)
-    
-# def searchFacebook(product):
-#     webbrowser.open(facebook, new=1)
-
-
-
-
-
 product = input("Enter a product you'd like to search for: ")
 
 
@@ -176,13 +164,3 @@ else:
     print("This product can be found at: ")
     print(theLink)
     print('-------------------------------------------------')
-
-
-# print("outside of the statement")
-# searchEbay(product)
-# searchKijiji(product)
-# searchWalmart(product)
-# searchFacebook(product)
-
-
-
